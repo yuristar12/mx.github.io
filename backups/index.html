@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--WebApp全屏模式   隐藏地址栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!--苹果强制全屏显示-->
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <!--强制全屏显示-->
+    <meta name="full-screen" content="yes"/>
+    <!--制定iphone中safari顶端的状态条的样式（default:白色，black:黑色，black-translucent：半透明）-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!--告诉设备忽略将页面中的数字识别为电话号码 -->
+    <meta name="format-detection" content="telephone=yes"/>
+    <!--告诉设备忽略将页面中的地址识别 -->
+    <meta name="format-detection" content="address=no"/>
+    <title>魅熙护理方案</title>
+	<!-- <link rel="stylesheet" type="text/css" href="./css/index.css"/> -->
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			font-size: 0.24rem;
+		}
+		.title_bor{
+			display: flex;
+		}
+		.title_bor div{
+			width: 0.14rem;
+			background: #773bb3;
+			border-radius:0.1rem;
+		}
+		.title_bor p{
+			padding: 0.1rem;
+			font-size: 0.28rem;
+		}
+		
+		
+		
+		.content{
+			width: 100%;
+			padding-bottom: 0.6rem;
+		}
+		.header{
+			width: 90%;
+			margin: 0 auto;
+		}
+		
+		
+		/* logo */
+		.header .logo{
+			display: flex;
+			padding: 0.2rem 0;
+			border-bottom: 0.04rem #000000 solid;
+		}
+		.header .logo img{
+			width: 0.46rem;
+			height: 0.6rem;
+			padding: 0.1rem 0.2rem 0 0;
+		}
+		.header .logo p{
+			height: 0.8rem;
+			line-height: 0.8rem;
+			font-size: 0.32rem;
+		}
+		.header .logo p span{
+			font-size: 0.32rem;
+		}
+		
+		/* plan_number */
+		.header .plan_number{
+			display: flex;
+			justify-content: space-between;
+			padding: 0.2rem 0;
+		}
+		.header .plan_number img{
+			height: 0.8rem;
+		}
+		.header .plan_number p{
+			height: 0.8rem;
+			line-height: 0.8rem;
+		}
+		
+		/* user_info */
+		.header .user_info{
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 0.04rem #000000 solid;
+			padding: 0 0 0.2rem 0;
+		}
+		.header .user_info p{
+			font-weight: bold;
+		}
+		.header .user_info p span{
+			font-weight: 300;
+		}
+		
+		/*  */
+		.program{
+			width: 90%;
+			margin: 0 auto;
+			padding: 0.4rem 0;
+		}
+		
+		/* problem */
+		.program .problem{
+			background: #F1F1F1;
+			padding: 0.2rem;
+		}
+		.program .problem p:nth-child(1){
+			font-size: 0.3rem;
+			font-weight: bold;
+		}
+		.program .problem p:nth-child(2){
+			padding: 0.2rem 0;
+		}
+		
+		/* plan */
+		.program .plan{
+			background: #F1F1F1;
+			padding: 0.2rem;
+			margin-top: 0.4rem;
+		}
+		.program .plan p:nth-child(1){
+			font-size: 0.3rem;
+			font-weight: bold;
+		}
+		.program .plan p:nth-child(2){
+			padding: 0.2rem 0;
+		}
+		
+		/* user_plan */
+		.user_plan{
+			width: 90%;
+			margin: 0 auto;
+		}
+		.user_plan .title{
+			text-align: center;
+			color: #773bb3;
+			font-weight: bold;
+			font-size: 0.36rem;
+		}
+		
+		/* cosmetic_info */
+		.user_plan .cosmetic_info{
+			padding: 0.2rem 0;
+		}
+		#cosmetic_list .item{
+			padding: 0.3rem 0;
+			border-bottom: 0.04rem #000000 dashed;
+		}
+		#cosmetic_list .item div{
+			display: flex;
+			padding: 0.1rem 0;
+		}
+		#cosmetic_list .item div .item_title{
+			width: 18%;
+		}
+		#cosmetic_list .item div .item_info{
+			width: 82%;
+		}
+		
+		/* tutor */
+		.tutor{
+			width: 90%;
+			margin: 0 auto;
+			padding-bottom: 0.2rem;
+			border-bottom: 0.04rem #000000 dashed;
+		}
+		
+		/* seal */
+		.seal{
+			width: 90%;
+			margin: 0 auto;
+			position: relative;
+			font-size: 0.32rem;
+			padding: 0.4rem 0;
+		}
+		.seal p{
+			text-align: right;
+		}
+		.seal img{
+			width: 2rem;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+	</style>
+  </head>
+  <body>
+	<div class="content">
+		<div class="header">
+			<div class="logo">
+				<img src="./img/logo.png" alt="">
+				<p><span id="nursingName"></span></p>
+			</div>
+			<div class="plan_number">
+				<p>NO：<span id="nursingSn"></span></p>
+				<img id="barCode" >
+			</div>
+			<div class="user_info">
+				<p>姓名：<span id="nursingUsername"></span></p>
+				<p>年龄：<span id="nursingAge"></span></p>
+				<p>性别：<span id="nursingSex"></span></p>
+			</div>
+		</div>
+		<div class="program">
+			<div class="problem">
+				<p>肌肤问题：</p>
+				<p id="nursingSkinProblems"></p>
+			</div>
+			<div class="plan">
+				<p>护理计划：</p>
+				<p id="nursingPlan"></p>
+			</div>
+			<div class="plan">
+				<p>使用说明：</p>
+				<p id="nursingInstructions"></p>
+			</div>
+		</div>
+		<div class="user_plan">
+			<div class="title">为您搭配的护理计划</div>
+			<div class="cosmetic_info">
+				<div class="title_bor">
+					<div></div>
+					<p>护肤品详情</p>
+				</div>
+				<div id="cosmetic_list"></div>
+			</div>
+		</div>
+		<div class="tutor">
+			<div class="">
+				<p id="totalState">总价：<span id="totalPrice"><strong>￥</strong>5000.00</span></p>
+				<p>导师：<span id="nursingLecturer"></span></p>
+			</div>
+		</div>
+		<div class="seal">
+			<div class="">
+				<p>魅熙护理</p>
+				<p id="nursingSaveTime">2020.01.21</p>
+				<img src="img/seal.png" >
+			</div>
+		</div>
+	</div>
+  </body>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+  	document.documentElement.style.fontSize=innerWidth/7.5+"px";
+  	console.log("1rem="+innerWidth/7.5)
+  	onresize = function(){
+  	    document.documentElement.style.fontSize=innerWidth/7.5+"px";
+  	    console.log("1rem="+innerWidth/7.5)
+  	}
+	$(function(){
+		let str = window.location.href.substr(window.location.href.indexOf("?")+1,window.location.href.length);
+		let list = str.split('&');
+		let id = list[0].substr(3,list[0].length);//计划id
+		
+		$.ajax({
+			type:"get",
+			contentType: "application/json",
+			xhrFields:{withCredentials:true},
+			url:"https://gxw.yanshuai.net/api/m/kgetOneNursing/nursingPlan?id="+id,
+			dataType:"json",
+			async: false,
+			success: function(data){
+				console.log(data)
+				$("#nursingInstructions").html(data.data.nursingInstructions)//使用说明
+				$("#nursingLecturer").html(data.data.nursingLecturer)//身份
+				$("#nursingName").html(data.data.nursingName)//护理计划名称
+				$("#nursingPlan").html(data.data.nursingPlan)//护理计划
+				$("#nursingSex").html(data.data.nursingSex)//性别
+				$("#nursingSkinProblems").html(data.data.nursingSkinProblems)//肌肤问题
+				$("#nursingSn").html(data.data.nursingSn)//计划编号
+				$("#barCode").JsBarcode(data.data.nursingSn,{
+					width: 2,//较细处条形码的宽度
+					height: 50, //条形码的宽度，无高度直接设置项，由位数决定，可以通过CSS去调整，见下
+					quite: 10, 
+					format: "CODE128",
+					displayValue: true,//是否在条形码下方显示文字
+					font:"monospace", 
+					textAlign:"center",
+					fontSize: 12,
+					backgroundColor:"#e8e8e8",
+					lineColor:"#000"//条形码颜色
+				})
+				$("#nursingUsername").html(data.data.nursingUsername)//用户姓名
+				$("#nursingAge").html(data.data.nursingAge)//年龄
+				$("#totalPrice").html("￥"+data.data.totalPrice)//总价
+				$("#nursingSaveTime").html(data.data.nursingSaveTime.substr(0,10))//报告日期
+				
+				if(data.data.totalState == 2){//总价是否显示
+					$("#totalState").css('display','none')
+				}
+				if(data.data.numberState == 2){//数量是否显示
+					$("#numberState").css('display','none')
+				}
+				if(data.data.priceState == 2){//单价是否显示
+					$("#priceState").css('display','none')
+				}
+				
+				$("#cosmetic_list").html("");
+				for(let i in data.data.nursingCommodity){
+					$("#cosmetic_list").append(
+						'<div class="item">'+
+							'<div>'+
+								'<p class="item_title">产品名称：</p>'+
+								'<p class="item_info">'+ data.data.nursingCommodity[i].tradeName + data.data.nursingCommodity[i].specifications +'</p>'+
+							'</div>'+
+							'<div style="'+ (data.data.priceState==1?'':'display:none') +'">'+
+								'<p class="item_title">产品单价：</p>'+
+								'<p class="item_info">'+ data.data.nursingCommodity[i].price +'</p>'+
+							'</div>'+
+							'<div style="'+ (data.data.numberState==1?'':'display:none') +'">'+
+								'<p class="item_title">产品数量：</p>'+
+								'<p class="item_info">'+ data.data.nursingCommodity[i].goodsNum +'</p>'+
+							'</div>'+
+							'<div>'+
+								'<p class="item_title">产品功效：</p>'+
+								'<p class="item_info">'+ data.data.nursingCommodity[i].explainSons +'</p>'+
+							'</div>'+
+						'</div>'
+					)
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
+			}
+		});
+	})
+  </script>
+  <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</html>
